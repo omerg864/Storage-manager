@@ -1,0 +1,43 @@
+{
+    "PasswordRules" : {
+        "start": "סיסמה חייבת להיות:",
+        "english": "באנגלית",
+        "smallLetter": "אות קטנה אחת לפחות",
+        "capitalLetter": "אות גדולה אחת לפחות",
+        "number": "מספר אחד לפחות",
+        "length": "בין 8 ל24 אותיות"
+    },
+    "PasswordChange": {
+        "passwordChange": "שינוי סיסמה",
+        "newPassword": "סיסמה חדשה",
+        "confirmPassword": "אימות סיסמה",
+        "passwordUpdated": "הסיסמה עודכנה בהצלחה",
+        "save": "שמור",
+        "passwordInvalid": "סיסמה לא תקינה",
+        "passwordsNotMatch": "הסיסמאות לא תואמות",
+        "passwordChanged": "הסיסמה שונתה בהצלחה",
+        "cancel": "ביטול"
+    },
+    "Register": {
+        "register": "הרשמה",
+        "name": "שם",
+        "email": "אימייל",
+        "school": "בית ספר",
+        "degree": "תואר",
+        "password": "סיסמה",
+        "confirmPassword": "אימות סיסמה",
+        "already": "כבר רשום?",
+        "passwordInvalid": "סיסמה לא תקינה",
+        "passwordsNotMatch": "הסיסמאות לא תואמות",
+        "emailInvalid": "אימייל לא תקין",
+        "registerSuccess": "ההרשמה הצליחה",
+        "registerFail": "ההרשמה נכשלה"
+    },
+    "Login": {
+        "login": "התחברות",
+        "email": "אימייל",
+        "password": "סיסמה",
+        "forgot": "שכחתי סיסמה",
+        "noAccount": "אין לך חשבון?"
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "PasswordRules" : {
+        "start": "Password must be:",
+        "english": "In English",
+        "smallLetter": "At least 1 small letter",
+        "capitalLetter": "At least 1 capital letter",
+        "number": "At least 1 number",
+        "length": "Between 8 and 24 characters"
+    },
+    "PasswordChange": {
+        "passwordChange": "Change Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password",
+        "passwordUpdated": "Password Updated Successfully",
+        "save": "Save",
+        "passwordInvalid": "Password does not match the rules",
+        "passwordsNotMatch": "Passwords do not match",
+        "passwordChanged": "Password Changed Successfully",
+        "cancel": "Cancel"
+    },
+    "Register": {
+        "register": "Register",
+        "name": "Name",
+        "email": "Email",
+        "school": "School",
+        "degree": "Degree",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "already": "Already have an account?",
+        "passwordInvalid": "Password does not match the rules",
+        "passwordsNotMatch": "Passwords do not match",
+        "emailInvalid": "Email is invalid",
+        "registerSuccess": "Registration Successful",
+        "registerFail": "Registration Failed"
+    },
+    "Login": {
+        "login": "Login",
+        "email": "Email",
+        "password": "Password",
+        "forgot": "Forgot Password?",
+        "noAccount": "Don't have an account?"
+    }
+}
