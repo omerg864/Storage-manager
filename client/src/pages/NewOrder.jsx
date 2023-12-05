@@ -59,13 +59,14 @@ function NewOrder() {
         <h1>{t('newOrder')}</h1>
         <Box className='box-container' sx={{xs: {width: "100%"}, md: {width: "60%"}}} component={Paper}>
           <form style={{textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '15px'}} onSubmit={handleSubmit} >
-            <TextField fullWidth id="name" value={itemData.name} label={t('name')} name='name' type="text" required variant="outlined" onChange={handleItemChange} />
-            <TextField fullWidth id="serial_number" value={itemData.serial_number} label={t('serialNumber')} name='serial_number' type="text" required variant="outlined" onChange={handleItemChange} />
-            <TextField fullWidth id="quantity" value={itemData.quantity} label={t('quantity')} name='quantity' type="number" required variant="outlined" onChange={handleItemChange} />
-            <FormControlLabel control={<Checkbox  checked={itemData.replacement} sx={{padding: 0}} onClick={toggleReplacement} color="success" />} label={t('replacement')}/>
-            <TextField fullWidth id="order_to" value={itemData.order_to} label={t('orderTo')} name='order_to' type="text" variant="outlined" onChange={handleItemChange} />
+            <TextField color='error' fullWidth id="name" value={itemData.name} label={t('name')} name='name' type="text" required variant="outlined" onChange={handleItemChange} />
+            <TextField color='error' fullWidth id="serial_number" value={itemData.serial_number} label={t('serialNumber')} name='serial_number' type="text" required variant="outlined" onChange={handleItemChange} />
+            <TextField color='error' fullWidth id="quantity" value={itemData.quantity} label={t('quantity')} name='quantity' type="number" required variant="outlined" onChange={handleItemChange} />
+            <FormControlLabel control={<Checkbox  checked={itemData.replacement} sx={{padding: 0}} onClick={toggleReplacement} color="error" />} label={t('replacement')}/>
+            <TextField color='error' fullWidth id="order_to" value={itemData.order_to} label={t('orderTo')} name='order_to' type="text" variant="outlined" onChange={handleItemChange} />
             <Select
                 id="status"
+                color='error'
                 name='status'
                 value={orderData.status}
                 label={t('status')}
@@ -77,7 +78,7 @@ function NewOrder() {
                 <MenuItem value={3}>{t('rejected')}</MenuItem>
                 <MenuItem value={4}>{t('received')}</MenuItem>
             </Select>
-            {orderData.status === 3 && <TextField fullWidth id="reject_description" value={orderData.reject_description} label={t('rejectDescription')} name='reject_description' type="text" variant="outlined" onChange={handleOrderChange} />}
+            {orderData.status === 3 && <TextField color='error' fullWidth id="reject_description" value={orderData.reject_description} label={t('rejectDescription')} name='reject_description' type="text" variant="outlined" onChange={handleOrderChange} />}
             <div>
             <Button variant="contained" color="primary" type="submit" >{t('create')}</Button>
             </div>

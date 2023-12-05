@@ -50,8 +50,8 @@ function NewStorage({setList}) {
         <h1>{t('newStorage')}</h1>
         <Box className='box-container' sx={{xs: {width: "100%"}, md: {width: "60%"}}} component={Paper}>
           <form style={{textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '15px'}} onSubmit={handleSubmit} >
-          <TextField fullWidth id="name" value={storageData.name} label={t('name')} name='name' type="text" required variant="outlined" onChange={handleChange} />
-          <FormControlLabel sx={{margin: 0}} control={<Checkbox  checked={storageData.used} sx={{padding: 0}} onClick={toggleUsed} color="success" />} label={t('used')} />
+          <TextField color='error' fullWidth id="name" value={storageData.name} label={t('name')} name='name' type="text" required variant="outlined" onChange={handleChange} />
+          <FormControlLabel sx={{margin: 0}} control={<Checkbox  checked={storageData.used} sx={{padding: 0}} onClick={toggleUsed} color="error" />} label={t('used')} />
             <div>
             <Button variant="contained" color="primary" type="submit" >{t('create')}</Button>
             </div>

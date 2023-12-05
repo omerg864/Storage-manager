@@ -49,11 +49,12 @@ function NewItem({ storageList }) {
         <h1>{t('newItem')}</h1>
         <Box className='box-container' sx={{xs: {width: "100%"}, md: {width: "60%"}}} component={Paper}>
           <form style={{textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '15px'}} onSubmit={handleSubmit} >
-            <TextField fullWidth id="name" value={itemData.name} label={t('name')} name='name' type="text" required variant="outlined" onChange={handleChange} />
-            <TextField fullWidth id="serial_number" value={itemData.serial_number} label={t('serialNumber')} name='serial_number' type="text" required variant="outlined" onChange={handleChange} />
-            <TextField fullWidth id="quantity" value={itemData.quantity} label={t('quantity')} name='quantity' type="number" required variant="outlined" onChange={handleChange} />
+            <TextField color='error' fullWidth id="name" value={itemData.name} label={t('name')} name='name' type="text" required variant="outlined" onChange={handleChange} />
+            <TextField color='error' fullWidth id="serial_number" value={itemData.serial_number} label={t('serialNumber')} name='serial_number' type="text" required variant="outlined" onChange={handleChange} />
+            <TextField color='error' fullWidth id="quantity" value={itemData.quantity} label={t('quantity')} name='quantity' type="number" required variant="outlined" onChange={handleChange} />
             <Select
                 id="storage"
+                color='error'
                 name='storage'
                 value={itemData.storage}
                 label={t('storage')}
@@ -65,8 +66,8 @@ function NewItem({ storageList }) {
                     )
                 })}
             </Select>
-            <FormControlLabel control={<Checkbox  checked={itemData.replacement} sx={{padding: 0}} onClick={toggleReplacement} color="success" />} label={t('replacement')}/>
-            <TextField fullWidth id="order_to" value={itemData.order_to} label={t('orderTo')} name='order_to' type="text" variant="outlined" onChange={handleChange} />
+            <FormControlLabel control={<Checkbox  checked={itemData.replacement} sx={{padding: 0}} onClick={toggleReplacement} color="error" />} label={t('replacement')}/>
+            <TextField color='error' fullWidth id="order_to" value={itemData.order_to} label={t('orderTo')} name='order_to' type="text" variant="outlined" onChange={handleChange} />
             <div>
             <Button variant="contained" color="primary" type="submit" >{t('create')}</Button>
             </div>

@@ -61,7 +61,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}/>} />
         <Route path="/register" element={<Register />} />
-        <Route path="/storage/:storageId" element={<Storage />} />
+        <Route path="/storage/:storageId" element={<Storage storagesList={list}/>} />
         <Route path="/" element={<Orders isAuthenticated />} />
         <Route path="/transactions" element={<Transactions/>} />
         <Route path="/new/storage" element={<NewStorage setList={setList}/>} />

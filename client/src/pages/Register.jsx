@@ -68,8 +68,8 @@ function Register({ isAuthenticated}) {
         <Link to="/login">{t('already')}</Link>
         <Box className='box-container' component={Paper} sx={{xs: {width: "100%"}, md: {width: "60%"}}}>
             <form style={{textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '15px'}} onSubmit={handleSubmit}>
-            <TextField fullWidth id="name" value={formData.name} label={t('name')} name='name' required variant="outlined" onChange={handleChange} />
-            <TextField fullWidth id="email"  value={formData.email} label={t('email')} name='email' type="email" required variant="outlined" onChange={handleChange} />
+            <TextField color='error' fullWidth id="name" value={formData.name} label={t('name')} name='name' required variant="outlined" onChange={handleChange} />
+            <TextField color='error' fullWidth id="email"  value={formData.email} label={t('email')} name='email' type="email" required variant="outlined" onChange={handleChange} />
             <PasswordInput id="password"  value={formData.password} label={t('password')} name="password" onChange={handleChange}/>
             <PasswordRules />
             <PasswordInput id="confirmPassword"  value={formData.confirmPassword} label={t('confirmPassword')} name="confirmPassword" onChange={handleChange}/>

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { toast } from 'react-toastify';
 
-function ItemDisplay({item, rejected}) {
+function ItemDisplay({item, rejected, setEditItem, setUseItem}) {
 
   const { t } = useTranslation('translation', { keyPrefix: 'ItemDisplay' });
 
@@ -37,10 +37,11 @@ function ItemDisplay({item, rejected}) {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>{t('orderTo')}: {item.order_to}</Typography>
-            {item.used_for && <Typography>{t('orderTo')}: {item.used_for}</Typography>}
+            {item.used_for && <Typography>{t('usedFor')}: {item.used_for}</Typography>}
             {rejected && <Typography>{t('rejected')}: {rejected}</Typography>}
-            <div className='center w-100'>
-              <Button>Edit</Button>
+            <div className='space w-100'>
+            <Button color='secondary' onClick={() => setUseItem(item)}>{t('use')}</Button>
+              <Button onClick={() => setEditItem(item)}>{t('edit')}</Button>
             </div>
           </AccordionDetails>
         </Accordion>
