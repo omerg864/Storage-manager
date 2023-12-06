@@ -54,7 +54,7 @@ export default function Header({ isAuthenticated, setIsAuthenticated, list}) {
   return (
     <>
     <Box >
-      <AppBar position="static">
+      <AppBar position="static" sx={{backgroundColor: 'rgb(135, 0, 0)'}}>
         <Toolbar>
           {isAuthenticated && <IconButton
             onClick={() => setDrawerOpen(true)}

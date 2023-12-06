@@ -80,7 +80,7 @@ function NewOrder() {
             </Select>
             {orderData.status === 3 && <TextField color='error' fullWidth id="reject_description" value={orderData.reject_description} label={t('rejectDescription')} name='reject_description' type="text" variant="outlined" onChange={handleOrderChange} />}
             <div>
-            <Button variant="contained" color="primary" type="submit" >{t('create')}</Button>
+            <Button variant="contained" color='error' type="submit" >{t('create')}</Button>
             </div>
           </form>
       </Box>

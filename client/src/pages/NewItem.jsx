@@ -69,7 +69,7 @@ function NewItem({ storageList }) {
             <FormControlLabel control={<Checkbox  checked={itemData.replacement} sx={{padding: 0}} onClick={toggleReplacement} color="error" />} label={t('replacement')}/>
             <TextField color='error' fullWidth id="order_to" value={itemData.order_to} label={t('orderTo')} name='order_to' type="text" variant="outlined" onChange={handleChange} />
             <div>
-            <Button variant="contained" color="primary" type="submit" >{t('create')}</Button>
+            <Button variant="contained" color='error' type="submit" >{t('create')}</Button>
             </div>
           </form>
       </Box>

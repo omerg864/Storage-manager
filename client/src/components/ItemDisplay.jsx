@@ -50,9 +50,9 @@ function ItemDisplay({item, rejected, setEditItem, setUseItem, order, setEditOrd
             <Typography>{t('orderTo')}: {item.order_to}</Typography>
             {item.used_for && <Typography>{t('usedFor')}: {item.used_for}</Typography>}
             {rejected && <Typography>{t('rejected')}: {rejected}</Typography>}
-            <div className={`${order ? 'center' : 'space'} w-100`}>
+            <div className={`${order ? 'center' : 'space'} w-100`} style={{marginTop: '10px'}}>
             {!order && <Button color='secondary' onClick={() => setUseItem(item)}>{used ? t('restitution') : t('use')}</Button>}
-              <Button onClick={editMode}>{t('edit')}</Button>
+              <Button color='error' onClick={editMode}>{t('edit')}</Button>
             </div>
           </AccordionDetails>
         </Accordion>

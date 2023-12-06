@@ -68,8 +68,8 @@ function ItemEdit({item, handleChange, toggleChange, index, saveItem, setEditIte
                     </Select>}
             </div>}
             <div className={`space w-100`} style={{marginTop: '10px'}}>
-            <Button color="error" onClick={() => setEditItem(false)}>{t('cancel')}</Button>
-              <Button onClick={() => saveItem(index)}>{t('save')}</Button>
+            <Button color="secondary" onClick={() => setEditItem(false)}>{t('cancel')}</Button>
+              <Button color='error' onClick={() => saveItem(index)}>{t('save')}</Button>
             </div>
           </AccordionDetails>
         </Accordion>

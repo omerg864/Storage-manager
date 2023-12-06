@@ -243,8 +243,8 @@ function Storage({ storagesList}) {
             </Select>}
             </div>
           <div className='space w-100' style={{marginTop: '10px'}}>
-            <Button color="error" onClick={() => setModalOpen(false)}>{t('cancel')}</Button>
-            <Button color="primary" onClick={storageData.used ? restitutiveItem : saveUseItem}>{t('save')}</Button>
+            <Button color="secondary" onClick={() => setModalOpen(false)}>{t('cancel')}</Button>
+            <Button color="error" onClick={storageData.used ? restitutiveItem : saveUseItem}>{t('save')}</Button>
           </div>
         </Box>
       </Modal>
