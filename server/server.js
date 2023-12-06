@@ -11,6 +11,9 @@ import transactionRouter from './routes/TransactionRoutes.js';
 import storageRouter from './routes/StorageRoutes.js';
 import orderRouter from './routes/OrderRoutes.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 connectDB();
 
