@@ -4,8 +4,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'react-i18next';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { toast } from 'react-toastify';
+import RecyclingIcon from '@mui/icons-material/Recycling';
 
-function ItemDisplay({item, rejected, setEditItem, setUseItem}) {
+function ItemDisplay({item, rejected, setEditItem, setUseItem, order, setEditOrder}) {
 
   const { t } = useTranslation('translation', { keyPrefix: 'ItemDisplay' });
 
@@ -13,6 +14,15 @@ function ItemDisplay({item, rejected, setEditItem, setUseItem}) {
     e.stopPropagation()
     navigator.clipboard.writeText(item.serial_number);
     toast.info(t('copied'));
+  }
+
+  const editMode = () => {
+    if (order) {
+      setEditOrder(order);
+      setEditItem(item);
+    } else {
+      setEditItem(item);
+    }
   }
   return (
     <Accordion >
@@ -25,10 +35,11 @@ function ItemDisplay({item, rejected, setEditItem, setUseItem}) {
               <div className='item-header'>
                 <Typography>{item.name}</Typography>
                 <Divider orientation="vertical" flexItem />
-                <Typography>{item.serial_number}</Typography>
+                <Typography>{item.serial_number.substring(0, 4)}-{item.serial_number.substring(4, 10)}</Typography>
               </div>
-              <div className='center'>
+              <div className='center' style={{gap: '5px'}}>
                 <Typography>{item.quantity}</Typography>
+                {item.replacement && <RecyclingIcon />}
                 <IconButton onClick={copy}>
                   <ContentCopyIcon/>
                 </IconButton>
@@ -39,9 +50,9 @@ function ItemDisplay({item, rejected, setEditItem, setUseItem}) {
             <Typography>{t('orderTo')}: {item.order_to}</Typography>
             {item.used_for && <Typography>{t('usedFor')}: {item.used_for}</Typography>}
             {rejected && <Typography>{t('rejected')}: {rejected}</Typography>}
-            <div className='space w-100'>
-            <Button color='secondary' onClick={() => setUseItem(item)}>{t('use')}</Button>
-              <Button onClick={() => setEditItem(item)}>{t('edit')}</Button>
+            <div className={`${order ? 'center' : 'space'} w-100`}>
+            {!order && <Button color='secondary' onClick={() => setUseItem(item)}>{t('use')}</Button>}
+              <Button onClick={editMode}>{t('edit')}</Button>
             </div>
           </AccordionDetails>
         </Accordion>

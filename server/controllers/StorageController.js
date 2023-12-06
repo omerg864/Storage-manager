@@ -3,9 +3,10 @@ import Storage from '../models/StorageModel.js';
 import Item from '../models/ItemModel.js';
 
 const createStorage = asyncHandler(async (req, res, next) => {
-    const {name} = req.body;
+    const {name, used} = req.body;
     const storage = await Storage.create({
         name,
+        used,
         user: req.user._id
     });
     res.status(201).json({
@@ -26,17 +27,23 @@ const getStorage = asyncHandler(async (req, res, next) => {
     }
     const page = req.query.page || 1;
     const search = req.query.search || '';
+    const limit = 20;
     let items;
+    let count;
     if(search) {
-        items = await Item.find({storage: storage._id, $or : [{name: {$regex: search, $options: 'i'}}, {serial_number: {$regex: search, $options: 'i'}}]}).skip((page - 1) * 10).limit(10);
+        count = await Item.countDocuments({storage: storage._id, $or : [{name: {$regex: search, $options: 'i'}}, {serial_number: {$regex: search, $options: 'i'}}]});
+        items = await Item.find({storage: storage._id, $or : [{name: {$regex: search, $options: 'i'}}, {serial_number: {$regex: search, $options: 'i'}}]}).skip((page - 1) * limit).limit(limit);
     } else {
-        items = await Item.find({storage: storage._id}).skip((page - 1) * 10).limit(10);
+        count = await Item.countDocuments({storage: storage._id, $or : [{name: {$regex: search, $options: 'i'}}, {serial_number: {$regex: search, $options: 'i'}}]});
+        items = await Item.find({storage: storage._id}).skip((page - 1) * limit).limit(limit);
     }
+    count = Math.ceil(count / limit);
     res.status(200).json({
         success: true,
         storage: {
             ...storage._doc,
-            items
+            items,
+            pages: count
         }
     });
 });

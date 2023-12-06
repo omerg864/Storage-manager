@@ -1,12 +1,12 @@
 
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
 import ItemDisplay from '../components/ItemDisplay';
-import { Box, Button, MenuItem, Modal, Select, SpeedDial, SpeedDialAction, SpeedDialIcon, TextField, Typography } from '@mui/material';
+import { Box, Button, MenuItem, Modal, Pagination, Select, SpeedDial, SpeedDialAction, SpeedDialIcon, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import ItemEdit from '../components/ItemEdit';
@@ -38,9 +38,11 @@ function Storage({ storagesList}) {
   const [isLoading, setIsLoading] = useState(false);
   const [editItem, setEditItem] = useState(false);
   const [useItem, setUseItem] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [searched, setSearched] = useState(true);
   const [storageData, setStorageData] = useState({
     name: '',
+    pages: 1,
     items: []
   });
 
@@ -61,7 +63,13 @@ function Storage({ storagesList}) {
       if (!data.success) {
           toast.error(data.message);
       } else {
-          // TODO: Update item in storageData
+          toast.success(t('itemUpdated'));
+          setStorageData({...storageData, items: storageData.items.map((item) => {
+            if(item._id === editItem._id)
+              return editItem;
+            return item;
+          })});
+          setEditItem(false);
       }
     } catch (err) {
         toast.error('Internal Server Error')
@@ -69,16 +77,50 @@ function Storage({ storagesList}) {
     setIsLoading(false);
   }
 
-  const saveUseItem = async (e, index) => {
+  const openModal = (item) => {
+    setModalOpen(true);
+    setUseItem(item);
+  }
 
+  const saveUseItem = async (e) => {
+    if(useItem.replacement && !useItem.storage) {
+      toast.error(t('selectStorage'));
+      return;
+    }
+    if(!useItem.quantity) {
+      toast.error(t('selectQuantity'));
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const response = await fetch(`/api/item/${useItem._id}/use`, { headers: {"Content-type": "application/json", "authorization": `Bearer ${cookies.get('userToken')}`}, method: 'PATCH', body: JSON.stringify(useItem)})
+      const data = await response.json();
+      if (!data.success) {
+          toast.error(data.message);
+      } else {
+          toast.success(t('itemUpdated'));
+          if(data.removed) {
+            setStorageData({...storageData, items: storageData.items.filter((item) => item._id !== data.item._id)});
+          } else {
+            setStorageData({...storageData, items: storageData.items.map((item) => {
+              if(item._id === data.item._id)
+                return data.item;
+              return item;
+            })});
+          }
+          setEditItem(false);
+          setModalOpen(false);
+      }
+    } catch (err) {
+        toast.error('Internal Server Error')
+    }
+    setIsLoading(false);
   }
 
   const handleUseChange = (e) => {
-
-  }
-
-  const toggleStorageUse = () => {
-
+    e.stopPropagation();
+    e.preventDefault();
+    setUseItem({...useItem, [e.target.name]: e.target.value});
   }
 
   const handleEditChange = (e) => {
@@ -87,6 +129,10 @@ function Storage({ storagesList}) {
 
   const handleEditReplacementToggle = (e) => {
     setEditItem({...editItem, replacement: !editItem.replacement});
+  }
+
+  const handlePageChange = (e, page) => {
+    navigate(`/storage/${params.storageId}?page=${page}`);
   }
 
   const getStorage = async (loading) => {
@@ -120,11 +166,13 @@ function Storage({ storagesList}) {
       {storageData.items.map((item, index) => {
         return (
           <Fragment key={index}>
-          {editItem._id === item._id ? <ItemEdit saveItem={saveItem} toggleChange={handleEditReplacementToggle} item={editItem} handleChange={handleEditChange} setEditItem={setEditItem} storageList={storagesList}/> : <ItemDisplay setUseItem={setUseItem} item={item} setEditItem={setEditItem}/>}
+          {editItem._id === item._id ? <ItemEdit saveItem={saveItem} toggleChange={handleEditReplacementToggle} item={editItem} handleChange={handleEditChange} setEditItem={setEditItem} storageList={storagesList}/> 
+          : <ItemDisplay setUseItem={openModal} item={item} setEditItem={setEditItem}/>}
           </Fragment>
         )
       })}
       </Box>
+      <Pagination color='secondary' count={storageData.pages} page={query.get('page') ? parseInt(query.get('page')) : 1} onChange={handlePageChange} />
       <SpeedDial
         ariaLabel="navigation"
         sx={{ position: 'sticky', bottom: 16, marginLeft: "auto", marginRight: "1rem", marginTop: "auto" }}
@@ -140,26 +188,27 @@ function Storage({ storagesList}) {
           />
       </SpeedDial>
       <Modal
-        open={useItem}
-        onClose={() => setUseItem(false)}
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={styleModal}>
           <h1>{t('useItem')}</h1>
           <div style={{marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '10px'}}>
-          <TextField id="quantity" onClick={(e) => {e.stopPropagation();}} value={useItem.quantity} label={t('quantity')} name='quantity' 
+          <TextField id="quantity" onChange={handleUseChange} value={useItem.quantity} label={t('quantity')} name='quantity' 
                 type="text" required color="error" variant="outlined"  />
-            <TextField id="used_for" onClick={(e) => {e.stopPropagation();}} value={useItem.used_for} label={t('usedFor')} name='used_for' 
-                type="text" required color="error" variant="outlined"  />
+            <TextField id="used_for" onChange={handleUseChange}  value={useItem.used_for} label={t('usedFor')} name='used_for' 
+                type="text" color="error" variant="outlined"  />
             {useItem.replacement && <Select
                 id="storage"
                 color='error'
                 name='storage'
                 value={useItem.storage}
                 label={t('storage')}
+                onChange={handleUseChange}
             >
-                {storagesList.map((storage, index) => {
+                {storagesList.filter(storage => storage.used).map((storage, index) => {
                     return (
                         <MenuItem key={index} value={storage._id}>{storage.name}</MenuItem>
                     )
@@ -167,8 +216,8 @@ function Storage({ storagesList}) {
             </Select>}
             </div>
           <div className='space w-100' style={{marginTop: '10px'}}>
-            <Button color="error" onClick={() => setEditItem(false)}>{t('cancel')}</Button>
-            <Button color="primary" onClick={() => setEditItem(false)}>{t('save')}</Button>
+            <Button color="error" onClick={() => setModalOpen(false)}>{t('cancel')}</Button>
+            <Button color="primary" onClick={saveUseItem}>{t('save')}</Button>
           </div>
         </Box>
       </Modal>
