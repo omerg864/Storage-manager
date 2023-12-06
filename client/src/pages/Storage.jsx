@@ -117,6 +117,33 @@ function Storage({ storagesList}) {
     setIsLoading(false);
   }
 
+  const restitutiveItem = async (e) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`/api/item/${useItem._id}/restitution`, { headers: {"Content-type": "application/json", "authorization": `Bearer ${cookies.get('userToken')}`}, method: 'PATCH', body: JSON.stringify(useItem)})
+      const data = await response.json();
+      if (!data.success) {
+          toast.error(data.message);
+      } else {
+          toast.success(t('itemUpdated'));
+          if(data.removed) {
+            setStorageData({...storageData, items: storageData.items.filter((item) => item._id !== data.item._id)});
+          } else {
+            setStorageData({...storageData, items: storageData.items.map((item) => {
+              if(item._id === data.item._id)
+                return data.item;
+              return item;
+            })});
+          }
+          setEditItem(false);
+          setModalOpen(false);
+      }
+    } catch (err) {
+        toast.error('Internal Server Error')
+    }
+    setIsLoading(false);
+  }
+
   const handleUseChange = (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -167,7 +194,7 @@ function Storage({ storagesList}) {
         return (
           <Fragment key={index}>
           {editItem._id === item._id ? <ItemEdit saveItem={saveItem} toggleChange={handleEditReplacementToggle} item={editItem} handleChange={handleEditChange} setEditItem={setEditItem} storageList={storagesList}/> 
-          : <ItemDisplay setUseItem={openModal} item={item} setEditItem={setEditItem}/>}
+          : <ItemDisplay used={storageData.used} setUseItem={openModal} item={item} setEditItem={setEditItem}/>}
           </Fragment>
         )
       })}
@@ -200,7 +227,7 @@ function Storage({ storagesList}) {
                 type="text" required color="error" variant="outlined"  />
             <TextField id="used_for" onChange={handleUseChange}  value={useItem.used_for} label={t('usedFor')} name='used_for' 
                 type="text" color="error" variant="outlined"  />
-            {useItem.replacement && <Select
+            {useItem.replacement && !storageData.used && <Select
                 id="storage"
                 color='error'
                 name='storage'
@@ -217,7 +244,7 @@ function Storage({ storagesList}) {
             </div>
           <div className='space w-100' style={{marginTop: '10px'}}>
             <Button color="error" onClick={() => setModalOpen(false)}>{t('cancel')}</Button>
-            <Button color="primary" onClick={saveUseItem}>{t('save')}</Button>
+            <Button color="primary" onClick={storageData.used ? restitutiveItem : saveUseItem}>{t('save')}</Button>
           </div>
         </Box>
       </Modal>

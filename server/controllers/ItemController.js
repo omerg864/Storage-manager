@@ -98,5 +98,36 @@ const useItem = asyncHandler(async (req, res, next) => {
     });
 });
 
+const restitutiveItem = asyncHandler(async (req, res, next) => {
+    const {id} = req.params;
+    const item = await Item.findById(id);
+    if(!item) {
+        res.status(404);
+        throw new Error('Item not found');
+    }
+    if(item.user.toString() !== req.user._id.toString()) {
+        res.status(401);
+        throw new Error('Not authorized');
+    }
+    const {quantity} = req.body;
+    if(quantity > item.quantity) {
+        res.status(400);
+        throw new Error('Not enough items');
+    }
+    let removed = false;
+    if(quantity === item.quantity) {
+        removed = true;
+        item.storage = null;
+    } else {
+        item.quantity -= quantity;
+    }
+    await item.save();
+    res.status(200).json({
+        success: true,
+        item,
+        removed
+    });
+});
 
-export {createItem, updateItem, useItem};
+
+export {createItem, updateItem, useItem, restitutiveItem};

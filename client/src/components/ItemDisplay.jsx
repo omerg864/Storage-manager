@@ -6,7 +6,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { toast } from 'react-toastify';
 import RecyclingIcon from '@mui/icons-material/Recycling';
 
-function ItemDisplay({item, rejected, setEditItem, setUseItem, order, setEditOrder}) {
+function ItemDisplay({item, rejected, setEditItem, setUseItem, order, setEditOrder, used}) {
 
   const { t } = useTranslation('translation', { keyPrefix: 'ItemDisplay' });
 
@@ -51,7 +51,7 @@ function ItemDisplay({item, rejected, setEditItem, setUseItem, order, setEditOrd
             {item.used_for && <Typography>{t('usedFor')}: {item.used_for}</Typography>}
             {rejected && <Typography>{t('rejected')}: {rejected}</Typography>}
             <div className={`${order ? 'center' : 'space'} w-100`}>
-            {!order && <Button color='secondary' onClick={() => setUseItem(item)}>{t('use')}</Button>}
+            {!order && <Button color='secondary' onClick={() => setUseItem(item)}>{used ? t('restitution') : t('use')}</Button>}
               <Button onClick={editMode}>{t('edit')}</Button>
             </div>
           </AccordionDetails>
