@@ -31,8 +31,8 @@ function ItemDisplay({item, rejected, setEditItem, setUseItem, order, setEditOrd
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <div className='space w-100' style={{padding: "0 5px 0 0"}}>
-              <div className='item-header'>
+            <div className='space w-100 wrap' style={{padding: "0 5px 0 0"}}>
+              <div className='item-header wrap'>
                 <Typography>{item.name}</Typography>
                 <Divider orientation="vertical" flexItem />
                 <Typography>{item.serial_number.substring(0, 4)}-{item.serial_number.substring(4, 10)}</Typography>
@@ -47,6 +47,8 @@ function ItemDisplay({item, rejected, setEditItem, setUseItem, order, setEditOrd
             </div>
           </AccordionSummary>
           <AccordionDetails>
+            <Typography>{item.name}</Typography>
+            <Typography>{item.serial_number.substring(0, 4)}-{item.serial_number.substring(4, 10)}</Typography>
             <Typography>{t('orderTo')}: {item.order_to}</Typography>
             {item.used_for && <Typography>{t('usedFor')}: {item.used_for}</Typography>}
             {rejected && <Typography>{t('rejected')}: {rejected}</Typography>}

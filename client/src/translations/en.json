@@ -85,7 +85,13 @@
         "orderTo": "Order To",
         "save": "Save",
         "cancel": "Cancel",
-        "reject_description": "Reject Description"
+        "reject_description": "Reject Description",
+        "pending": "Pending",
+        "ordered": "Ordered",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "received": "Received",
+        "copied": "Serial Number Copied"
     },
     "PasswordRules" : {
         "start": "Password must be:",

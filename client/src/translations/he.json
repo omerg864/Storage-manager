@@ -85,7 +85,13 @@
         "orderTo": "הוזמן ל",
         "save": "שמור",
         "cancel": "ביטול",
-        "reject_description": "סיבת דחיה"
+        "reject_description": "סיבת דחיה",
+        "pending": "הזמנות ממתינות",
+        "ordered": "הוזמן",
+        "approved": "אושר",
+        "rejected": "נדחה",
+        "received": "התקבל",
+        "copied": "מק״ט הועתק"
     },
     "PasswordRules" : {
         "start": "סיסמה חייבת להיות:",
