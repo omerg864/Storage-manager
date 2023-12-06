@@ -1,4 +1,92 @@
 {
+    "Header": {
+        "switchLan": "שנה שפה",
+        "logout": "התנתק",
+        "title": "אנ״מ"
+    },
+    "DrawerList": {
+        "storages": "מחסנים",
+        "newStorage": "מחסן חדש",
+        "transactions": "העברות",
+        "orders": "הזמנות"
+    },
+    "Orders": {
+        "orders": "הזמנות",
+        "newOrder": "הזמנה חדשה",
+        "search": "חיפוש",
+        "pendingOrder": "הזמנות ממתינות",
+        "ordered": "הוזמן",
+        "approved": "אושר",
+        "rejected": "נדחה",
+        "received": "התקבל",
+        "orderUpdated": "ההזמנה עודכנה בהצלחה"
+    },
+    "OrderList": {
+        "noOrders": "אין הזמנות :("
+    },
+    "NewOrder": {
+        "newOrder": "הזמנה חדשה",
+        "name": "שם",
+        "serialNumber": "מק״ט",
+        "quantity": "כמות",
+        "replacement": "תמורה",
+        "orderTo": "הוזמן ל",
+        "pending": "הזמנות ממתינות",
+        "ordered": "הוזמן",
+        "approved": "אושר",
+        "rejected": "נדחה",
+        "received": "התקבל",
+        "create": "צור הזמנה",
+        "orderCreated": "ההזמנה נוצרה בהצלחה"
+    },
+    "Storage": {
+        "search": "חיפוש",
+        "newItem": "פריט חדש",
+        "useItem": "צרוך פריט",
+        "save": "שמור",
+        "cancel": "ביטול",
+        "quantity": "כמות",
+        "usedFor": "נוצל ל",
+        "storage": "מחסן",
+        "itemUpdated": "הפריט עודכן בהצלחה"
+    },
+    "ItemDisplay": {
+        "orderTo":"הוזמן ל",
+        "edit": "ערוך",
+        "use": "צרוך",
+        "copied": "מק״ט הועתק",
+        "restitution": "זיכוי",
+        "rejected": "סיבת דחיה",
+        "usedFor": "נוצל ל"
+    },
+    "NewItem": {
+        "newItem":"פריט חדש",
+        "name": "שם",
+        "serialNumber": "מק״ט",
+        "quantity": "כמות",
+        "replacement": "תמורה",
+        "create": "צור פריט",
+        "orderTo": "הוזמן ל",
+        "storage": "מחסן",
+        "itemCreated": "הפריט נוצר בהצלחה"
+    },
+    "NewStorage": {
+        "newStorage": "מחסן חדש",
+        "name": "שם",
+        "create": "צור מחסן",
+        "used": "בלאי",
+        "storageCreated": "המחסן נוצר בהצלחה"
+    },
+    "ItemEdit": {
+        "name": "שם",
+        "serialNumber": "מק״ט",
+        "quantity": "כמות",
+        "replacement": "תמורה",
+        "orderTo": "הוזמן ל",
+        "save": "שמור",
+        "cancel": "ביטול",
+        "reject_description": "סיבת דחיה"
+    },
     "PasswordRules" : {
         "start": "סיסמה חייבת להיות:",
         "english": "באנגלית",
@@ -22,8 +110,6 @@
         "register": "הרשמה",
         "name": "שם",
         "email": "אימייל",
-        "school": "בית ספר",
-        "degree": "תואר",
         "password": "סיסמה",
         "confirmPassword": "אימות סיסמה",
         "already": "כבר רשום?",
