@@ -31,7 +31,7 @@ function Storage({ storagesList}) {
   const params = useParams();
   const [query] = useSearchParams();
   const [search, setSearch] = useState('');
-  const { t } = useTranslation('translation', { keyPrefix: 'NewStorage' });
+  const { t } = useTranslation('translation', { keyPrefix: 'Storage' });
   const cookies = new Cookies();
   const navigate = useNavigate();
   const [nav, setNav] = useState(false);

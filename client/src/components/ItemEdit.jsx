@@ -19,7 +19,7 @@ function ItemEdit({item, handleChange, toggleChange, index, saveItem, setEditIte
                 <TextField id="name" onClick={(e) => {e.stopPropagation();}} value={item.name} label={t('name')} name='name' 
                 type="text" required color="error" variant="outlined" onChange={handleChange} />
                 <Divider orientation="vertical" flexItem />
-                <TextField id="serial_number" onClick={(e) => {e.stopPropagation();}} value={item.serial_number} label={t('serial_number')} name='serial_number' 
+                <TextField id="serial_number" onClick={(e) => {e.stopPropagation();}} value={item.serial_number} label={t('serialNumber')} name='serial_number' 
                 type="text" required color="error" variant="outlined" onChange={handleChange} />
               </div>
               <div className='center'>
@@ -30,7 +30,7 @@ function ItemEdit({item, handleChange, toggleChange, index, saveItem, setEditIte
           </AccordionSummary>
           <AccordionDetails>
             <div className="space">
-            <TextField id="order_to" value={item.order_to} label={t('order_to')} name='order_to' 
+            <TextField id="order_to" value={item.order_to} label={t('orderTo')} name='order_to' 
                 type="text" required color="error" variant="outlined" onChange={handleChange} />
                         <FormControlLabel control={<Checkbox  checked={item.replacement} sx={{padding: 0}} onClick={toggleChange} color="error" />} label={t('replacement')}/>
             </div>

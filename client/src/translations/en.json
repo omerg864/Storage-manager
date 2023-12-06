@@ -1,4 +1,92 @@
 {
+    "Header": {
+        "switchLan": "switch to",
+        "logout": "Logout",
+        "title": "ANM"
+    },
+    "DrawerList": {
+        "storages": "Storages",
+        "newStorage": "New Storage",
+        "transactions": "Transactions",
+        "orders": "Orders"
+    },
+    "Orders": {
+        "orders": "Orders",
+        "newOrder": "New Order",
+        "search": "Search",
+        "pendingOrder": "Pending Orders",
+        "ordered": "Ordered",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "received": "Received",
+        "orderUpdated": "Order Updated Successfully"
+    },
+    "OrderList": {
+        "noOrders": "No Orders Found Here :("
+    },
+    "NewOrder": {
+        "newOrder": "New Order",
+        "name": "Name",
+        "serialNumber": "Serial Number",
+        "quantity": "Quantity",
+        "replacement": "Replacement",
+        "orderTo": "Order To",
+        "pending": "Pending",
+        "ordered": "Ordered",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "received": "Received",
+        "create": "Create",
+        "orderCreated": "Order Created Successfully"
+    },
+    "Storage": {
+        "search": "Search",
+        "newItem": "New Item",
+        "useItem": "Use Item",
+        "save": "Save",
+        "cancel": "Cancel",
+        "quantity": "Quantity",
+        "usedFor": "Used For",
+        "storage": "Storage",
+        "itemUpdated": "Item Updated Successfully"
+    },
+    "ItemDisplay": {
+        "orderTo":"Order To",
+        "edit": "Edit",
+        "use": "Use",
+        "copied": "Serial Number Copied",
+        "restitution": "Restitution",
+        "rejected": "Rejected Description",
+        "usedFor": "Used For"
+    },
+    "NewItem": {
+        "newItem":"New Item",
+        "name": "Name",
+        "serialNumber": "Serial Number",
+        "quantity": "Quantity",
+        "replacement": "Replacement",
+        "create": "Create",
+        "orderTo": "Order To",
+        "storage": "Storage",
+        "itemCreated": "Item Created Successfully"
+    },
+    "NewStorage": {
+        "newStorage": "New Storage",
+        "name": "Name",
+        "create": "Create",
+        "used": "Used",
+        "storageCreated": "Storage Created Successfully"
+    },
+    "ItemEdit": {
+        "name": "Name",
+        "serialNumber": "Serial Number",
+        "quantity": "Quantity",
+        "replacement": "Replacement",
+        "orderTo": "Order To",
+        "save": "Save",
+        "cancel": "Cancel",
+        "reject_description": "Reject Description"
+    },
     "PasswordRules" : {
         "start": "Password must be:",
         "english": "In English",
@@ -22,8 +110,6 @@
         "register": "Register",
         "name": "Name",
         "email": "Email",
-        "school": "School",
-        "degree": "Degree",
         "password": "Password",
         "confirmPassword": "Confirm Password",
         "already": "Already have an account?",
